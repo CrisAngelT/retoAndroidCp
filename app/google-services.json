@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1019212789083",
+    "project_id": "ecommerce-cineplanet",
+    "storage_bucket": "ecommerce-cineplanet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019212789083:android:291ad7967e6e7e9def967e",
+        "android_client_info": {
+          "package_name": "com.example.ecommercecineplanet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEjFNkSE0GLi_5ueBFiEyZkH6Nivqs1J4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
