@@ -56,7 +56,7 @@ public class CandyShopAct extends BaseActivity {
         GlobalAmountManager globalAmountManager = GlobalAmountManager.getInstance();
         globalAmountManager.getTotalAmountLiveData().observe(this, totalAmount -> {
             total = totalAmount;
-            binding.txvMountTotal.setText("S/ " + (totalAmount));
+            binding.txvMountTotal.setText("S/ " + (total));
             updateViewWithTotal(totalAmount);
 
         });
@@ -73,6 +73,13 @@ public class CandyShopAct extends BaseActivity {
         binding.imgArrow.setOnClickListener(view -> finish());
         validateUser();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalAmountManager.getInstance().reset();
+    }
+
 
     public void goPay() {
         startActivity(new Intent(this, PayAct.class));
