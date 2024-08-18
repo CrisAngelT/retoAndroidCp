@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:openDrawer="end">
 
     <LinearLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         tools:context=".ui.home.HomeAct">
 
@@ -49,16 +47,39 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:layout_weight="1">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Cineplanet"
+                        android:text="@string/title_planet"
                         android:textColor="@color/color_primary"
                         android:textSize="@dimen/dimen_26sp"
                         android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="end"
+                        android:layout_marginEnd="30dp"
+                        android:layout_height="wrap_content">
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_login"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="end"
+                            android:backgroundTint="@color/color_primary"
+                            app:cardCornerRadius="50dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:src="@drawable/svg_user"
+                                android:padding="10dp"
+                                android:contentDescription="@string/app_name"
+                                android:layout_height="wrap_content"
+                                app:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
 
 
                 </LinearLayout>

@@ -1,10 +1,13 @@
 package com.example.ecommercecineplanet.ui.candyshop;
 
+import static com.example.ecommercecineplanet.commons.KeyExtras.KEY_EXTRA_PREMIERE;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.EdgeToEdge;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,6 +20,7 @@ import com.example.ecommercecineplanet.commons.snackbar.SnackBarHelper;
 import com.example.ecommercecineplanet.data.model.CandyStoreResponse;
 import com.example.ecommercecineplanet.data.model.PremierResponse;
 import com.example.ecommercecineplanet.databinding.ActivityCandyShopBinding;
+import com.example.ecommercecineplanet.domain.provider.LoginProviderFirebase;
 import com.example.ecommercecineplanet.domain.usecase.GetCandyStoreUseCase;
 import com.example.ecommercecineplanet.ui.base.BaseActivity;
 import com.example.ecommercecineplanet.ui.base.BaseViewModel;
@@ -40,7 +44,6 @@ public class CandyShopAct extends BaseActivity {
         binding = ActivityCandyShopBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         loadingDialog = DialogHelper.dialogLoadingApi(this);
-
         loadingDialog.show();
         EcommerceCineplanetApp app = (EcommerceCineplanetApp) getApplication();
         GetCandyStoreUseCase getCandyStoreUseCase = app.getAppModule().provideGetCandyStoreUseCase(
@@ -68,6 +71,7 @@ public class CandyShopAct extends BaseActivity {
 
         });
         binding.imgArrow.setOnClickListener(view -> finish());
+        validateUser();
     }
 
     public void goPay() {
@@ -78,11 +82,17 @@ public class CandyShopAct extends BaseActivity {
         try {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                premiereData = BeanMapper.fromJson(extras.getString("prueba2"), PremierResponse.Premiere.class);
+                premiereData = BeanMapper.fromJson(extras.getString(KEY_EXTRA_PREMIERE), PremierResponse.Premiere.class);
                 paintData(premiereData);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void validateUser(){
+        if (!new LoginProviderFirebase().existSession()) {
+            binding.imgUser.setImageResource(R.drawable.svg_incognito);
         }
     }
 

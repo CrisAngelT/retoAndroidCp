@@ -30,7 +30,6 @@ public class HomeViewModel extends ViewModel {
         loadPremieres();
     }
 
-
     public void loadPremieres() {
         getPremiersUseCase.execute(new Callback<>() {
 

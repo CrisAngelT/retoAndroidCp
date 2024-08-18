@@ -84,7 +84,7 @@
                         android:id="@+id/btn_continue"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Continuar"
+                        android:text="Aceptar"
                         android:textStyle="bold"
                         app:cornerRadius="10dp"
                         android:layout_marginTop="10dp"

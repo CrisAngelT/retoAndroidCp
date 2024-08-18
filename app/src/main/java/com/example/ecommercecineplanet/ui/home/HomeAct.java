@@ -1,9 +1,13 @@
 package com.example.ecommercecineplanet.ui.home;
 
+import static com.example.ecommercecineplanet.commons.KeyExtras.KEY_EXTRA_PREMIERE;
+
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 
 import androidx.activity.EdgeToEdge;
 import androidx.lifecycle.ViewModelProvider;
@@ -43,7 +47,6 @@ public class HomeAct extends BaseActivity {
         menuBinding = binding.activityMenu;
         loadingDialog = DialogHelper.dialogLoadingApi(this);
         loadingDialog.show();
-        EdgeToEdge.enable(this);
         EcommerceCineplanetApp app = (EcommerceCineplanetApp) getApplication();
         GetPremiersUseCase getPremiersUseCase = app.getAppModule().provideGetPremiersUseCase(app.getAppModule().providePremierRepository(app.getAppModule().provideApiService()));
         homeViewModel = new ViewModelProvider(this, new BaseViewModel(getPremiersUseCase, null, null, null)).get(HomeViewModel.class);
@@ -81,6 +84,7 @@ public class HomeAct extends BaseActivity {
             startActivity(new Intent(HomeAct.this, SplashAct.class));
             finish();
         });
+        binding.cardLogin.setOnClickListener(view -> startActivity(new Intent(HomeAct.this, LoginAct.class)));
     }
 
     @Override
@@ -100,7 +104,7 @@ public class HomeAct extends BaseActivity {
             premiersAdapter.updateData(premierResponse.getPremieres());
         } else {
             dialogHelper.dialogGeneral(this, // Activity context
-                    "Ocurrio un error,intente de nuevo por favor.", (dialog, which) ->{
+                    "Ocurrio un error,intente de nuevo por favor.", (dialog, which) -> {
                         homeViewModel.loadPremieres();
                         loadingDialog.show();
                     }, false, (dialog, which) -> {
@@ -112,10 +116,10 @@ public class HomeAct extends BaseActivity {
 
     public void goActivityLogin(PremierResponse.Premiere premiere) {
         if (new LoginProviderFirebase().existSession()) {
-            startActivity(new Intent(this, CandyShopAct.class).putExtra("prueba2", BeanMapper.toJson(premiere)));
+            startActivity(new Intent(this, CandyShopAct.class).putExtra(KEY_EXTRA_PREMIERE, BeanMapper.toJson(premiere)));
 
         } else {
-            startActivity(new Intent(this, LoginAct.class).putExtra("prueba", BeanMapper.toJson(premiere)));
+            startActivity(new Intent(this, LoginAct.class).putExtra(KEY_EXTRA_PREMIERE, BeanMapper.toJson(premiere)));
 
         }
     }
@@ -126,6 +130,8 @@ public class HomeAct extends BaseActivity {
         menuBinding.txvUser.setText(new LoginProviderFirebase().getEmail());
         if (!new LoginProviderFirebase().existSession()) {
             menuBinding.menuLogout.setVisibility(View.GONE);
+        }else {
+            menuBinding.menuLogout.setVisibility(View.VISIBLE);
         }
     }
 }

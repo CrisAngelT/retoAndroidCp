@@ -1,5 +1,6 @@
 package com.example.ecommercecineplanet.commons.snackbar;
 
+import android.content.res.ColorStateList;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -15,9 +16,10 @@ public class SnackBarHelper {
     public void showSnackBar(View showView, String message) {
         Snackbar snackBarView = Snackbar.make(showView, message, BaseTransientBottomBar.ANIMATION_MODE_SLIDE);
         View view = snackBarView.getView();
-        view.setBackgroundColor(ContextCompat.getColor(view.getContext(), R.color.color_primary));
+        view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.color_primary)));
         FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
-        params.gravity = Gravity.BOTTOM;
+        params.gravity = Gravity.TOP;
+        params.topMargin = 50;
         view.setLayoutParams(params);
         snackBarView.setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE);
         snackBarView.show();

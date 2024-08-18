@@ -5,7 +5,7 @@
     <string name="text_enter_your_password">Contraseña</string>
     <string name="text_button_enter">Ingresar</string>
     <string name="text_candy_shop">Dulceria</string>
-    <string name="error_login">Ocurrio un error al iniciar sesion, intente de nuevo por favor</string>
+    <string name="error_login">Credenciales invalidas, intente de nuevo por favor</string>
     <string name="menu_register_card">Formulario de Pago\n</string>
     <string name="menu_home">Home</string>
     <string name="menu_candyShop">Dulceria</string>
@@ -15,6 +15,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="text_completeSuccessfull">Compra Exitosa</string>
     <string name="txv_subTitleCompleteSuccessfull">Gracias por su preferencia!\n</string>
+    <string name="title_planet">Cineplanet</string>
     <string-array name="document_types">
         <item>DNI</item>
         <item>Carnet de Extranjería</item>

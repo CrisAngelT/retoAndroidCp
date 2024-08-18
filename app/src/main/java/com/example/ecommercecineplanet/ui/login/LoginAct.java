@@ -1,10 +1,13 @@
 package com.example.ecommercecineplanet.ui.login;
 
+import static com.example.ecommercecineplanet.commons.KeyExtras.KEY_EXTRA_PREMIERE;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.EdgeToEdge;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ecommercecineplanet.R;
@@ -28,6 +31,7 @@ public class LoginAct extends BaseActivity {
     protected void initViewBinding() {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+                EdgeToEdge.enable(this);
         binding.imgArrow.setOnClickListener(view -> finish());
         loadingDialog = DialogHelper.dialogLoadingApi(this);
         dialogHelper = new DialogHelper();
@@ -50,7 +54,7 @@ public class LoginAct extends BaseActivity {
         try {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                return extras.getString("prueba", "");
+                return extras.getString(KEY_EXTRA_PREMIERE, "");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,11 +69,9 @@ public class LoginAct extends BaseActivity {
             loadingDialog.dismiss();
             if (Boolean.TRUE.equals(aBoolean)) {
                 dialogHelper.dialogGeneral(
-                        this, // Activity context
-                        "Bienvenido!", // Descripción
-                        (dialog, which) -> {
-                            goCandyStore(true);
-                        },
+                        this,
+                        "Bienvenido!",
+                        (dialog, which) -> goCandyStore(true),
                         false,
                         (dialog, which) -> {
 
@@ -84,7 +86,7 @@ public class LoginAct extends BaseActivity {
     }
 
     public void goCandyStore(Boolean isLogin) {
-        startActivity(new Intent(this, CandyShopAct.class).putExtra("prueba2", getExtras()));
+        startActivity(new Intent(this, CandyShopAct.class).putExtra(KEY_EXTRA_PREMIERE, getExtras()));
         if (Boolean.TRUE.equals(isLogin)){
             finish();
         }
@@ -93,10 +95,8 @@ public class LoginAct extends BaseActivity {
 
     private void validationSession() {
         if (binding.edtEmail.getText().toString().isEmpty()) {
-            binding.edtPassword.setError("Ingrese su correo");
             snackBarHelper.showSnackBar(viewButton, "Ingrese su correo");
         } else if (binding.edtPassword.getText().toString().isEmpty()) {
-            binding.edtPassword.setError("Ingrese su contraseña");
             snackBarHelper.showSnackBar(viewButton, "Ingrese su contraseña");
 
         } else {
