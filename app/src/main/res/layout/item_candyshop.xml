@@ -19,7 +19,7 @@
 
             <ImageView
                 android:id="@+id/img_candyShop"
-                android:layout_width="200dp"
+                android:layout_width="220dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:contentDescription="@string/app_name"
@@ -43,9 +43,11 @@
             <TextView
                 android:id="@+id/txv_description"
                 android:layout_width="match_parent"
-                tools:text="Canchita dulce"
+                tools:text="Incluye 2 bebidas y una cancha gigante"
                 android:textAlignment="center"
-                android:textSize="@dimen/dimen_16sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:textSize="@dimen/dimen_14sp"
                 android:textColor="@color/black"
                 android:layout_height="wrap_content" />
 
