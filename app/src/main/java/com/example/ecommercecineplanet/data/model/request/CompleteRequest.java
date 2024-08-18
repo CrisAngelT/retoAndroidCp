@@ -7,11 +7,9 @@ public class CompleteRequest {
     private String dni;
     private String operation_date;
 
-    // Constructor vacío
     public CompleteRequest() {
     }
 
-    // Constructor con parámetros
     public CompleteRequest(String name, String mail, String dni, String operation_date) {
         this.name = name;
         this.mail = mail;
@@ -19,7 +17,6 @@ public class CompleteRequest {
         this.operation_date = operation_date;
     }
 
-    // Métodos getter y setter
     public String getName() {
         return name;
     }

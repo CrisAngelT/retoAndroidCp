@@ -12,13 +12,7 @@ public class EcommerceCineplanetApp  extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         appModule = new AppModule(this);
-        if (BuildConfig.DEBUG){
-            Timber.plant(new Timber.DebugTree());
-
-
-        }
     }
 
     public AppModule getAppModule() {

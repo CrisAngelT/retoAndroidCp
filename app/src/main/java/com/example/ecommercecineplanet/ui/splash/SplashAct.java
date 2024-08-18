@@ -21,7 +21,5 @@ public class SplashAct extends AppCompatActivity {
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         TimeHelper.startTimer(this, HomeAct.class, 2000);
-        Timber.e("SESSION --> %s", new LoginProviderFirebase().existSession());
-        Timber.e("SESSION --> %s", new LoginProviderFirebase().getEmail());
     }
 }

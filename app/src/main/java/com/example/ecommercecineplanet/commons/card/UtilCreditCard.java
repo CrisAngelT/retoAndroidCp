@@ -10,8 +10,6 @@ import com.example.ecommercecineplanet.commons.snackbar.SnackBarHelper;
 import java.util.Calendar;
 
 public class UtilCreditCard {
-    public static String maskCreditCard = "#### #### #### ####";
-    public static String maskDate = "##/##";
 
     public static TextWatcher formatExpirationDate(final EditText editText) {
         return new TextWatcher() {

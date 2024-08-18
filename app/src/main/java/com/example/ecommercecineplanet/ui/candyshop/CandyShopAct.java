@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -37,6 +38,7 @@ public class CandyShopAct extends BaseActivity {
     PremierResponse.Premiere premiereData;
     private Double total;
     private Dialog loadingDialog;
+    private DialogHelper dialogHelper = new DialogHelper();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -45,6 +47,7 @@ public class CandyShopAct extends BaseActivity {
         setContentView(binding.getRoot());
         loadingDialog = DialogHelper.dialogLoadingApi(this);
         loadingDialog.show();
+        getOnBackPressedDispatcher().addCallback(onBackPressedCallback);
         EcommerceCineplanetApp app = (EcommerceCineplanetApp) getApplication();
         GetCandyStoreUseCase getCandyStoreUseCase = app.getAppModule().provideGetCandyStoreUseCase(
                 app.getAppModule().providePremierRepository(app.getAppModule().provideApiService())
@@ -70,15 +73,11 @@ public class CandyShopAct extends BaseActivity {
             }
 
         });
-        binding.imgArrow.setOnClickListener(view -> finish());
+        binding.imgArrow.setOnClickListener(view -> dialogValidationBack());
         validateUser();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        GlobalAmountManager.getInstance().reset();
-    }
+
 
 
     public void goPay() {
@@ -137,4 +136,32 @@ public class CandyShopAct extends BaseActivity {
     }
 
 
+    private OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            dialogValidationBack();
+        }
+    };
+
+
+    public void dialogValidationBack(){
+        if (total.equals(0.0)){
+            finish();
+        }
+        else {
+            dialogHelper.dialogGeneral(
+                    this,
+                    "Estás seguro de salir?,se reiniciará tu carrito",
+                    (dialog, which) -> {
+                        finish();
+                        GlobalAmountManager.getInstance().reset();
+                    },
+                    true,
+                    (dialog, which) -> {
+
+                    }
+            );
+        }
+
+    }
 }

@@ -44,6 +44,7 @@ public class CandyStoreViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<CandyStoreResponse> call, Throwable throwable) {
+                Timber.e("ERROR API -> %s", throwable.getMessage());
 
             }
         });

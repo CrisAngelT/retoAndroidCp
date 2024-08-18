@@ -55,7 +55,7 @@ public class DialogHelper {
             }
             modal.dismiss();
         });
-        bindingAlertUniversal.btnGone.setOnClickListener(v -> {
+        bindingAlertUniversal.btnCancel.setOnClickListener(v -> {
             if (listenerCancel != null) {
                 listenerCancel.onClick(modal, DialogInterface.BUTTON_POSITIVE);
             }

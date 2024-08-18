@@ -32,8 +32,7 @@ public class GlobalAmountManager {
         }
     }
     public void reset() {
-        totalAmountLiveData.setValue(0.0); // O el valor que quieras por defecto
-        // Restablece otros estados si es necesario
+        totalAmountLiveData.setValue(0.0);
     }
     public void subtractAmount(double amount) {
         Double currentTotal = totalAmountLiveData.getValue();
